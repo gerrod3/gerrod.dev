@@ -44,9 +44,9 @@ for markdown_file in "$SOURCE_FOLDER"/*.md; do
   fi
 
   # Extract filenames from image links ![imagename](link)
-  grep -oP '!\[.*?\]\(.*?\)' "$markdown_file" | while read -r match; do
+  grep -o '!\[[^]]*\](\([^)]*\))' "$markdown_file" | sed 's/.*(\(.*\))/\1/' | while read -r match; do
     # Remove ![]() to get the filename
-    extracted_file=$(echo "$match" | grep -oP '\!\[.*?\]\(\K[^\)]*' | xargs basename)
+    extracted_file=$(echo "$match" | xargs basename)
 
     # Full path of the file to copy
     file_to_copy="$SOURCE_ATT/$extracted_file"
