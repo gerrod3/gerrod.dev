@@ -1,6 +1,8 @@
 ---
 date: 2024-11-26
-tags: WIP,hello
+tags:
+  - WIP
+  - hello
 ---
 
 # Hello world
